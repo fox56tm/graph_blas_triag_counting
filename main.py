@@ -16,7 +16,6 @@ tests = ["karate"]
 def benchmarks() -> None:
 
     for name in tests:
-
         matrix = ld.get_matrix(name)
 
         t1Start = time.perf_counter()

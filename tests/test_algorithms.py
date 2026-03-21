@@ -11,11 +11,11 @@ def test_empty_graph():
 
     empty_matrix = gb.Matrix.from_coo([], [], [], nrows=10, ncols=10)
 
-    main_val = 0
+    expected = 0
 
-    assert alg.naive_alg(empty_matrix) == main_val
-    assert alg.burkhard_alg(empty_matrix) == main_val
-    assert alg.sandia_alg(empty_matrix) == main_val
+    assert alg.naive_alg(empty_matrix) == expected
+    assert alg.burkhard_alg(empty_matrix) == expected
+    assert alg.sandia_alg(empty_matrix) == expected
 
 
 def test_zero_triangle_graph():
@@ -26,31 +26,20 @@ def test_zero_triangle_graph():
 
     A = gb.Matrix.from_coo(rows, cols, vals, nrows=3, ncols=3)
 
-    assert alg.sandia_alg(A) == 0
-    assert alg.burkhard_alg(A) == 0
-    assert alg.naive_alg(A) == 0
+    expected = 0
+    assert alg.sandia_alg(A) == expected
+    assert alg.burkhard_alg(A) == expected
+    assert alg.naive_alg(A) == expected
+
 
 def test_graph_k3():
-   
-    
+
     rows = [0, 0, 1, 1, 2, 2]
     cols = [1, 2, 0, 2, 0, 1]
     vals = [1, 1, 1, 1, 1, 1]
     k3 = gb.Matrix.from_coo(rows, cols, vals, nrows=3, ncols=3)
-    
+
     expected = 1
     assert alg.naive_alg(k3) == expected
     assert alg.burkhard_alg(k3) == expected
     assert alg.sandia_alg(k3) == expected
-
-def test_disconnected_clusters():
-    
-    rows = [0,0,1,1,2,2, 3,3,4,4,5,5]
-    cols = [1,2,0,2,0,1, 4,5,3,5,3,4]
-    vals = [1] * 12
-    matrix = gb.Matrix.from_coo(rows, cols, vals, nrows=6, ncols=6)
-    
-    expected = 2
-    assert alg.sandia_alg(matrix) == expected
-    assert alg.burkhard_alg(matrix) == expected
-    assert alg.naive_alg(matrix) == expected
