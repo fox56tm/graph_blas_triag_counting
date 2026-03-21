@@ -1,38 +1,51 @@
 import numpy as np
+
+import time
+
 import graphblas as gb
-import algorithms as alg
+
+from src import algorithms as alg
 
 import networkx as nx
 
+from src import loader as ld
 
-def generate_large_graph(nodes=5000, prob=0.005):
+tests = ['karate']
 
-    G = nx.erdos_renyi_graph(nodes, prob)
-
-    edges = list(G.edges())
-
-    rows, cols = zip(*edges) if edges else ([], [])
-
-    return list(rows), list(cols)
+def benchmarks():
 
 
-rows, cols = generate_large_graph()
+    for name in tests:
+
+        matrix = ld.getMatrix(name)
+
+        t1Start = time.perf_counter()
+
+        trCount1 = alg.naiveAlg(matrix)
+
+        t1Res =  time.perf_counter() - t1Start
 
 
-matrix = gb.Matrix.from_coo(rows, cols, [1]*len(rows), nrows=5000, ncols=5000)
 
-c = alg.bukhartAlg(matrix)
 
-b = alg.sandiaAlg(matrix)
+        t2Start = time.perf_counter()
 
-z = alg.nativeAlg(matrix)
+        trCount2 = alg.burkhardAlg(matrix)
 
-print(c)
+        t2Res =  time.perf_counter() - t2Start
 
-print('\n')
 
-print(b)
 
-print('\n')
-print(z)
+        t3Start = time.perf_counter()
+
+        trCount3 = alg.sandiaAlg(matrix)
+
+        t3Res =  time.perf_counter() - t3Start
+
+
+        print(trCount1, trCount2, trCount3,'\n')
+        
+        print(f"Naive {t1Res:.6f}", f"Burkhard {t2Res:.6f}",f"Sandia {t3Res:.6f}")
+
+benchmarks()
 
