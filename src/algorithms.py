@@ -1,36 +1,37 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Dmitry Sergeev
+
+
 import graphblas as gb
 
 
-def preprocessMatrix(matrix):
+def preprocess_matrix(matrix: gb.Matrix) -> gb.Matrix:
 
-    B = matrix.ewise_add(matrix.T, gb.binary.plus).select('offdiag').new()
+    B = matrix.ewise_add(matrix.T, gb.binary.plus).select("offdiag").new()
 
     return B.apply(gb.unary.one).new()
 
-def  burkhardAlg(matrix):  
 
-   C = matrix.mxm(matrix, gb.semiring.plus_times).new(mask=matrix.S)
+def burkhard_alg(matrix: gb.Matrix) -> int:
 
-   return C.reduce_scalar().value // 6
+    C = matrix.mxm(matrix, gb.semiring.plus_times).new(mask=matrix.S)
+
+    return (C.reduce_scalar(gb.monoid.plus).value or 0) // 6
 
 
-def sandiaAlg(matrix):
+def sandia_alg(matrix: gb.Matrix) -> int:
 
-    L = matrix.select('tril').new()
+    L = matrix.select("tril").new()
 
-    C = L.mxm(L, gb.semiring.plus_times).new(mask = L.S)
+    C = L.mxm(L, gb.semiring.plus_times).new(mask=L.S)
 
-    return C.reduce_scalar(gb.monoid.plus).value
+    return C.reduce_scalar(gb.monoid.plus).value or 0
 
-    
-    
 
-def naiveAlg(matrix):
+def naive_alg(matrix: gb.Matrix) -> int:
 
     C = matrix.mxm(matrix, gb.semiring.plus_times).new()
-    
+
     C << C.mxm(matrix, gb.semiring.plus_times).select("diag")
 
-    return C.reduce_scalar().value // 6
-
-
+    return (C.reduce_scalar(gb.monoid.plus).value or 0) // 6

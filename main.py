@@ -1,51 +1,45 @@
-import numpy as np
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Dmitry Sergeev
+
 
 import time
 
-import graphblas as gb
 
 from src import algorithms as alg
 
-import networkx as nx
 
 from src import loader as ld
 
-tests = ['karate']
+tests = ["karate"]
 
-def benchmarks():
 
+def benchmarks() -> None:
 
     for name in tests:
 
-        matrix = ld.getMatrix(name)
+        matrix = ld.get_matrix(name)
 
         t1Start = time.perf_counter()
 
-        trCount1 = alg.naiveAlg(matrix)
+        trCount1 = alg.naive_alg(matrix)
 
-        t1Res =  time.perf_counter() - t1Start
-
-
-
+        t1Res = time.perf_counter() - t1Start
 
         t2Start = time.perf_counter()
 
-        trCount2 = alg.burkhardAlg(matrix)
+        trCount2 = alg.burkhard_alg(matrix)
 
-        t2Res =  time.perf_counter() - t2Start
-
-
+        t2Res = time.perf_counter() - t2Start
 
         t3Start = time.perf_counter()
 
-        trCount3 = alg.sandiaAlg(matrix)
+        trCount3 = alg.sandia_alg(matrix)
 
-        t3Res =  time.perf_counter() - t3Start
+        t3Res = time.perf_counter() - t3Start
 
+        print(trCount1, trCount2, trCount3, "\n")
 
-        print(trCount1, trCount2, trCount3,'\n')
-        
-        print(f"Naive {t1Res:.6f}", f"Burkhard {t2Res:.6f}",f"Sandia {t3Res:.6f}")
+        print(f"Naive {t1Res:.6f}", f"Burkhard {t2Res:.6f}", f"Sandia {t3Res:.6f}")
+
 
 benchmarks()
-
