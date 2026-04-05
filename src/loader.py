@@ -4,9 +4,9 @@
 
 import graphblas as gb
 import os
-from src import algorithms as alg
+import algorithms as alg
 
-DATA_DIR = "data"
+DATA_DIR = "../data"
 
 
 def get_matrix(matrix_name: str) -> gb.Matrix:

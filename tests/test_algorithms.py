@@ -5,6 +5,7 @@
 import graphblas as gb
 
 from src import algorithms as alg
+from src import loader as ld
 
 
 def test_empty_graph():
@@ -43,3 +44,5 @@ def test_graph_k3():
     assert alg.naive_alg(k3) == expected
     assert alg.burkhard_alg(k3) == expected
     assert alg.sandia_alg(k3) == expected
+
+
