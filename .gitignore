@@ -96,6 +96,7 @@ dkms.conf
 
 build/
 .cache
+*.sh
 
 # IDE settings
 .idea/
