@@ -2,7 +2,7 @@
 # Copyright (c) 2026 Dmitry Sergeev
 import graphblas as gb
 from src import algorithms as alg
-from src import loader as ld
+
 
 def test_empty_graph():
 
@@ -11,6 +11,7 @@ def test_empty_graph():
     assert alg.naive_alg(empty_matrix) == expected
     assert alg.burkhard_alg(empty_matrix) == expected
     assert alg.sandia_alg(empty_matrix) == expected
+
 
 def test_zero_triangle_graph():
 
@@ -22,6 +23,7 @@ def test_zero_triangle_graph():
     assert alg.sandia_alg(A) == expected
     assert alg.burkhard_alg(A) == expected
     assert alg.naive_alg(A) == expected
+
 
 def test_graph_k3():
 

@@ -1,18 +1,16 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2026 Dmitry Sergeev
-import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 from scipy import stats
 
 name = "burkhard"
 data = [[], [], []]
 lagr_data = []
 with open(f"py-bench-{name}.csv", "r") as f1:
-            data[0] = [float(line.strip()) for line in f1 if line.strip()]
+    data[0] = [float(line.strip()) for line in f1 if line.strip()]
 
 with open(f"test-res-lagr-{name}.csv", "r") as f1:
-      lagr_data = [float(line.strip()) for line in f1 if line.strip()]
+    lagr_data = [float(line.strip()) for line in f1 if line.strip()]
 
 plt.hist(data[0])
 print(stats.normaltest(data[0]))
