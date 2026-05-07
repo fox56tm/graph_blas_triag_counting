@@ -11,20 +11,17 @@ void lagraphBench(LAGraph_Graph g, LAGr_TriangleCount_Method method, int iter, i
 
 int main()
 {
-    double testSandia[30];
+    double testSandia[40];
     char msg[LAGRAPH_MSG_LEN];
     LAGraph_Init(msg);
     LAGraph_Graph google = createMatrixForBench("data/web-Google.mtx", msg);
     lagraphBench(google, LAGr_TriangleCount_Burkhardt, 30, 10, msg, testSandia);
-    for (int i = 0; i < 30; i++)
-        printf("%.9f ", testSandia[i]);
-
     LAGraph_Delete(&google, msg);
     LAGraph_Finalize(msg);
     FILE* testOut = fopen("src/test-res-lagr-burkhard.csv", "w");
 
     if (!testOut) {
-        printf("file error");
+        printf("file error\n");
         return 1;
     }
     for (int i = 0; i < 30; i++) {
