@@ -9,7 +9,6 @@ graph_name = sys.argv[1]
 algo_name  = sys.argv[2]
 
 matrix = ld.get_matrix(graph_name)
-
 if algo_name == "burkhard":
     algorithm = alg.burkhard_alg
 elif algo_name == "sandia":
@@ -17,8 +16,13 @@ elif algo_name == "sandia":
 else:
     algorithm = alg.naive_alg
 
-t_start = time.perf_counter()
-algorithm(matrix)
-t_end = time.perf_counter()
+results = []
+for i in range(40):
+    t_start = time.perf_counter()
+    algorithm(matrix)
+    t_end = time.perf_counter()
+    if i >= 10:
+        results.append(t_end - t_start)
 
-print(t_end - t_start)
+for r in results:
+    print(r)
