@@ -8,6 +8,7 @@ license = "MIT"
 dependencies = [
     "networkx>=3.6.1",
     "pandas>=3.0.1",
+    "py-spy>=0.4.2",
     "python-graphblas>=2025.2.0",
     "scipy>=1.17.1",
 ]
