@@ -8,7 +8,7 @@ BIN="./build/main"
 for file in data/*.mtx; do
     graph=$(basename "$file" .mtx)
     for algo in burkhard sandia; do
-        echo "now: $graph $algo
+        echo "now: $graph $algo"
         OUT_FILE="results/lagr-${graph}-${algo}.csv"
         sync
         echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
