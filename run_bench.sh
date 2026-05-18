@@ -1,0 +1,17 @@
+#!/bin/bash
+
+sudo -v
+sudo ./fix_freq.sh
+mkdir -p results
+
+for file in data/*.mtx; do
+    graph=$(basename "$file" .mtx)
+    for algo in burkhard sandia; do
+        echo "now: $graph $algo
+        sync
+        echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+        (cd src && taskset -c 0-7 uv run main.py "$graph" "$algo") > "results/bench-${graph}-${algo}.csv"
+        echo "ready: $graph $algo"
+    done
+done
+

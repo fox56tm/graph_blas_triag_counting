@@ -17,11 +17,11 @@ else:
     algorithm = alg.naive_alg
 
 results = []
-for i in range(40):
+for i in range(45):
     t_start = time.perf_counter()
     algorithm(matrix)
     t_end = time.perf_counter()
-    if i >= 10:
+    if i >= 15:
         results.append(t_end - t_start)
 
 for r in results:

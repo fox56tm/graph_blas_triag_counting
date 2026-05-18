@@ -87,3 +87,4 @@ void lagraphBench(LAGraph_Graph g, LAGr_TriangleCount_Method method, FILE* out, 
     }
     printf("triles: %lu\n", count);
 }
+
