@@ -15,7 +15,9 @@ sudo systemctl stop fwupd-refresh.timer
 sudo systemctl stop anacron.timer
 sudo systemctl stop systemd-tmpfiles-clean.timer
 sudo systemctl stop update-notifier-download.timer
+
 echo 90 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold > /dev/null
+
 for i in /proc/irq/*/smp_affinity; do
     echo f00 | sudo tee $i > /dev/null 2>&1
 done
