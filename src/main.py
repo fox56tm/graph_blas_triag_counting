@@ -6,7 +6,7 @@ import algorithms as alg
 import loader as ld
 
 graph_name = sys.argv[1]
-algo_name  = sys.argv[2]
+algo_name = sys.argv[2]
 
 matrix = ld.get_matrix(graph_name)
 if algo_name == "burkhard":
@@ -25,4 +25,4 @@ for i in range(45):
         results.append(t_end - t_start)
 
 for r in results:
-     print(r)
+    print(r)

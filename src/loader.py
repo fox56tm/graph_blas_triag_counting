@@ -3,7 +3,9 @@
 import graphblas as gb
 import os
 import algorithms as alg
+
 DATA_DIR = "../data"
+
 
 def get_matrix(matrix_name: str) -> gb.Matrix:
     matrix_path = os.path.join(DATA_DIR, f"{matrix_name}.mtx")
