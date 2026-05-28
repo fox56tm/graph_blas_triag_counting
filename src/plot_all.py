@@ -27,7 +27,12 @@ for i in range(0, 2):
 
 print("\n--- SEM ---")
 all_labels = ["burkhard-py", "sandia-py", "burkhard-lagr", "sandia-lagr"]
-all_datasets = [sorted(data_py[0])[:-1], sorted(data_py[1])[:-1], data_lagr[0], sorted(data_lagr[1])[:-1]]
+all_datasets = [
+    sorted(data_py[0])[:-1],
+    sorted(data_py[1])[:-1],
+    data_lagr[0],
+    sorted(data_lagr[1])[:-1],
+]
 for label, d in zip(all_labels, all_datasets):
     mean = np.mean(d)
     sem = stats.sem(d)
