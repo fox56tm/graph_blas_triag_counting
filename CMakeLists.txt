@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 project(example C)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_definitions(-D_POSIX_C_SOURCE=199309L)
 
 list(APPEND CMAKE_MODULE_PATH "/usr/local/lib/cmake/LAGraph")
 list(APPEND CMAKE_MODULE_PATH "/usr/local/lib/cmake/GraphBLAS")

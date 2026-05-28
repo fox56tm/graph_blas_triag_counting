@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Dmitry Sergeev
-#define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <string.h>
 #include <suitesparse/GraphBLAS.h>
@@ -17,25 +16,25 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    const char* graph_path  = argv[1];
-    const char* algo_name   = argv[2];
-    const char* output_path = argv[3];
+    const char* graphPath = argv[1];
+    const char* algoName = argv[2];
+    const char* outputPath = argv[3];
 
     LAGr_TriangleCount_Method method;
-    if (strcmp(algo_name, "burkhard") == 0) {
+    if (strcmp(algoName, "burkhard") == 0) {
         method = LAGr_TriangleCount_Burkhardt;
-    } else if (strcmp(algo_name, "sandia") == 0) {
+    } else if (strcmp(algoName, "sandia") == 0) {
         method = LAGr_TriangleCount_Sandia_LL;
-    } else{
+    } else {
         printf("algo error\n");
         return 1;
     }
 
     char msg[LAGRAPH_MSG_LEN];
     LAGraph_Init(msg);
-    LAGraph_Graph g = createMatrixForBench(graph_path, msg);
+    LAGraph_Graph g = createMatrixForBench(graphPath, msg);
 
-    FILE* out = fopen(output_path, "w");
+    FILE* out = fopen(outputPath, "w");
     lagraphBench(g, method, out, msg);
     fclose(out);
 
@@ -47,7 +46,8 @@ int main(int argc, char* argv[])
 LAGraph_Graph createMatrixForBench(const char* fileName, char* msg)
 {
     FILE* f = fopen(fileName, "r");
-    if (!f) return NULL;
+    if (!f)
+        return NULL;
 
     GrB_Matrix matrix = NULL;
     GrB_Matrix matrixT = NULL;
@@ -75,16 +75,15 @@ LAGraph_Graph createMatrixForBench(const char* fileName, char* msg)
 void lagraphBench(LAGraph_Graph g, LAGr_TriangleCount_Method method, FILE* out, char* msg)
 {
     uint64_t count = 0;
-    for(int i = 0; i < 30; i++){
+    for (int i = 0; i < 30; i++) {
         LAGr_TriangleCount_Method m = method;
         LAGr_TriangleCount_Presort presort = LAGr_TriangleCount_AutoSort;
         struct timespec start, end;
         clock_gettime(CLOCK_MONOTONIC, &start);
         LAGr_TriangleCount(&count, g, &m, &presort, msg);
         clock_gettime(CLOCK_MONOTONIC, &end);
-        double el = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+        double el = (double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9;
         fprintf(out, "%.16f\n", el);
     }
     printf("triles: %lu\n", count);
 }
-

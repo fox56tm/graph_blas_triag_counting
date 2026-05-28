@@ -16,7 +16,7 @@ sudo systemctl stop anacron.timer
 sudo systemctl stop systemd-tmpfiles-clean.timer
 sudo systemctl stop update-notifier-download.timer
 
-echo 90 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold > /dev/null
+echo "85 90" | sudo tee /sys/devices/platform/huawei-wmi/charge_control_thresholds > /dev/null
 
 for i in /proc/irq/*/smp_affinity; do
     echo f00 | sudo tee $i > /dev/null 2>&1

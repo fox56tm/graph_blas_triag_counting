@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo -v
-sudo ./fix_freq.sh
+sudo ./scripts/fix_freq.sh
 mkdir -p results
 BIN="./build/main"
 
