@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy import stats
 import numpy as np
 
-graph = "web-NotreDame"
+graph = "web-Stanford"
 algorithms = ["burkhard", "sandia"]
 algorithms2 = ["burkhard-py", "sandia-py", "burkhard-lagr", "sandia-lagr"]
 data_py = []
@@ -27,7 +27,7 @@ for i in range(0, 2):
 
 print("\n--- SEM ---")
 all_labels = ["burkhard-py", "sandia-py", "burkhard-lagr", "sandia-lagr"]
-all_datasets = [data_py[0], data_py[1], data_lagr[0], data_lagr[1]]
+all_datasets = [sorted(data_py[0])[:-1], sorted(data_py[1])[:-1], data_lagr[0], sorted(data_lagr[1])[:-1]]
 for label, d in zip(all_labels, all_datasets):
     mean = np.mean(d)
     sem = stats.sem(d)
@@ -36,9 +36,9 @@ for label, d in zip(all_labels, all_datasets):
 
 all_data = [
     sorted(data_py[0])[:-1],
-    sorted(data_py[1]),
-    sorted(data_lagr[0])[:-1],
-    sorted(data_lagr[1]),
+    sorted(data_py[1])[:-1],
+    sorted(data_lagr[0]),
+    sorted(data_lagr[1])[:-1],
 ]
 bp = plt.boxplot(all_data, patch_artist=True)
 colors = ["b", "g", "r", "y"]
