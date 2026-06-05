@@ -108,3 +108,6 @@ __pycache__/
 
 .venv/
 *.mtx
+results/
+perf.data
+perf.data.old

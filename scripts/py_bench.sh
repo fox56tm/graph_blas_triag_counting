@@ -1,9 +1,8 @@
 #!/bin/bash
 
 sudo -v
-sudo ./fix_freq.sh
+sudo ./scripts/fix_freq.sh
 mkdir -p results
-
 for file in data/*.mtx; do
     graph=$(basename "$file" .mtx)
     for algo in burkhard sandia; do
