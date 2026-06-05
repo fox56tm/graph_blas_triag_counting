@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy import stats
 import numpy as np
 
-graph = "cit-Patents"
+graph = "amazon-2008"
 algorithms = ["burkhard", "sandia"]
 algorithms2 = ["burkhard-py", "sandia-py", "burkhard-lagr", "sandia-lagr"]
 data_py = []
@@ -27,29 +27,45 @@ for i in range(0, 2):
 
 print("\n--- SEM ---")
 all_labels = ["burkhard-py", "sandia-py", "burkhard-lagr", "sandia-lagr"]
-all_datasets = [
-    sorted(data_py[0]),
-    sorted(data_py[1]),
-    data_lagr[0],
-    sorted(data_lagr[1]),
-]
-for label, d in zip(all_labels, all_datasets):
-    mean = np.mean(d)
-    sem = stats.sem(d)
-    ci = stats.t.ppf(0.975, df=len(d) - 1) * sem
-    print(f"{label}: mean={mean:.6f}, sem={sem:.6f}, interval={mean:.6f} ± {ci:.6f}")
+# all_datasets = [
+#     sorted(data_py[0]),
+#     sorted(data_py[1]),
+#     data_lagr[0],
+#     sorted(data_lagr[1]),
+# ]
+# for label, d in zip(all_labels, all_datasets):
+#     mean = np.mean(d)
+#     sem = stats.sem(d)
+#     ci = stats.t.ppf(0.975, df=len(d) - 1) * sem
+#     print(f"{label}: mean={mean:.6f}, sem={sem:.6f}, interval={mean:.6f} ± {ci:.6f}")
 
-all_data = [
+# all_data = [
+#     sorted(data_py[0]),
+#     sorted(data_py[1]),
+#     sorted(data_lagr[0]),
+#     sorted(data_lagr[1]),
+# ]
+# bp = plt.boxplot(all_data, patch_artist=True)
+# colors = ["b", "g", "r", "y"]
+# for patch, color in zip(bp["boxes"], colors):
+#     patch.set_facecolor(color)
+# plt.xticks([1, 2, 3, 4], algorithms2)
+# plt.ylabel("seconds")
+# plt.title(graph)
+# plt.show()
+
+
+# below code for 2 boxplots
+all_data_2 = [ 
     sorted(data_py[0]),
-    sorted(data_py[1]),
     sorted(data_lagr[0]),
-    sorted(data_lagr[1]),
 ]
-bp = plt.boxplot(all_data, patch_artist=True)
-colors = ["b", "g", "r", "y"]
+bp = plt.boxplot(all_data_2, patch_artist=True)
+colors = ["b", "g"]
 for patch, color in zip(bp["boxes"], colors):
     patch.set_facecolor(color)
-plt.xticks([1, 2, 3, 4], algorithms2)
+selected_labels = [algorithms2[0], algorithms2[2]]
+plt.xticks([1, 2], selected_labels)
 plt.ylabel("seconds")
 plt.title(graph)
 plt.show()
