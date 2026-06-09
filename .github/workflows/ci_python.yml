@@ -1,0 +1,22 @@
+name: Build and lint python
+
+on:
+  - push 
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone code
+        uses: actions/checkout@v4
+      - name: install uv
+        uses: astral-sh/setup-uv@v5
+      - name: install dependicies
+        run: uv sync
+      - name: format and lint
+        run: |
+            uv run ruff check .
+            uv run ruff format . --check
+      - name: test run
+        run: uv run pytest

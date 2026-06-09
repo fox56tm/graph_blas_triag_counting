@@ -111,3 +111,7 @@ __pycache__/
 results/
 perf.data
 perf.data.old
+roadNet-CA_burkhard_flame_py.svg
+roadNet-CA_burkhard_flame_c.svg
+web-NotreDame_burkhard_flame_py.svg
+web-NotreDame_burkhard_flame_c.svg

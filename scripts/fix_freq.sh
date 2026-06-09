@@ -1,4 +1,6 @@
 #!/bin/sh
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Dmitry Sergeev
 
 sudo systemctl stop unattended-upgrades
 sudo systemctl stop bluetooth
