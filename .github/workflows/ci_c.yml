@@ -1,0 +1,40 @@
+name: Build and lint C
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: GrB install
+        run: |
+          git clone --depth 1 https://github.com/DrTimothyAldenDavis/GraphBLAS.git
+          cd GraphBLAS
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -DGB_TESTS=OFF
+          cmake --build build --parallel $(nproc)
+          sudo cmake --install build
+      - name: LAGraph install
+        run: |
+          git clone --depth 1 https://github.com/GraphBLAS/LAGraph.git
+          cd LAGraph
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --parallel $(nproc)
+          sudo cmake --install build
+      - name: Check format
+        run: |
+          find lagraph_bench tests -type f -name '*.[ch]' -print | xargs clang-format --style=file --dry-run -Werror
+      - name: Configure
+        run: |
+          cmake . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+      - name: Build
+        run: |
+          cmake --build build
+      - name: Lint
+        run: |
+          run-clang-tidy-18 -p=build
+      - name: Tests
+        run: |
+          ctest --test-dir build --output-on-failure

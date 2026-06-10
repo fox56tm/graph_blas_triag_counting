@@ -1,33 +1,10 @@
-# GraphBLAS Triangle Counting
+## Dataset description
 
-Реализация трех алгоритмов подсчета треугольников в неориентированных графах с использованием библиотеки `python-graphblas`. 
-
-В файле `src/algorithms.py` реализованы следующие методы:
-
-1.  **Naive Algorithm**
-2.  **Burkhard Algorithm**
-3.  **Sandia Algorithm**
-
-# Установка
-
-**Clone:**
-   ```bash
-   git clone [https://github.com/fox56tm/graph_blas_triag_counting.git]
-   
-# Настройка
-
-   cd graph_blas_triag_counting
-   uv sync
-   uv run main.py
-   
-# Тесты
-
-1. Пустой граф
-2. Граф без треугольников
-3. Граф К3
-
-    ```bash
-    uv run pytest
-    
-
-   
+| Name | Vertices | Edges |
+|------|----------|-------|
+| amazon0302 | 262,111 | 1,234,877 |
+| amazon-2008 | 735,323 | 5,158,388 |
+| cit-Patents | 3,774,768 | 16,518,948 |
+| roadNet-CA | 1,971,281 | 2,766,607 |
+| web-NotreDame | 325,729 | 1,497,134 |
+| web-Stanford | 281,903 | 2,312,497 |
