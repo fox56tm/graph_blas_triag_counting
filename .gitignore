@@ -105,9 +105,8 @@ __pycache__/
 *.pyc
 
 .python-version
-
+data/*.mtx
 .venv/
-*.mtx
 results/
 perf.data
 perf.data.old
@@ -115,3 +114,4 @@ roadNet-CA_burkhard_flame_py.svg
 roadNet-CA_burkhard_flame_c.svg
 web-NotreDame_burkhard_flame_py.svg
 web-NotreDame_burkhard_flame_c.svg
+data/datasets.tar.gz
