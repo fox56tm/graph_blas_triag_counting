@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Dmitry Sergeev
-#include <assert.h>
 #include "../lagraph_bench/lagraph_utils.h"
+#include <assert.h>
 
 void createTestMatrix(const char* filename, const char* content)
 {
@@ -19,15 +19,15 @@ void testEmptyMatrixFile()
     printf("PASSED\n");
 }
 
-void testPreprocessMatrix(){
+void testPreprocessMatrix()
+{
     char msg[LAGRAPH_MSG_LEN];
     const char* filename = "test_matrix.mtx";
-    const char* content = 
-        "%%MatrixMarket matrix coordinate pattern general\n"
-        "3 3 3\n"
-        "1 1\n"
-        "1 2\n"
-        "2 3\n";
+    const char* content = "%%MatrixMarket matrix coordinate pattern general\n"
+                          "3 3 3\n"
+                          "1 1\n"
+                          "1 2\n"
+                          "2 3\n";
 
     createTestMatrix(filename, content);
     LAGraph_Graph g = createMatrixForBench(filename, msg);
@@ -47,7 +47,8 @@ void testPreprocessMatrix(){
     printf("PASSED\n");
 }
 
-int main(){
+int main()
+{
     char msg[LAGRAPH_MSG_LEN];
     LAGraph_Init(msg);
     printf("Tests:\n\n");
