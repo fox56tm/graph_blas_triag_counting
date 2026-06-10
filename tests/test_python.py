@@ -11,6 +11,7 @@ def test_empty_graph():
     assert alg.burkhard_alg(empty_matrix) == expected
     assert alg.sandia_alg(empty_matrix) == expected
 
+
 def test_zero_triangle_graph():
     rows = [0, 1, 1, 2]
     cols = [1, 0, 2, 1]
@@ -20,6 +21,7 @@ def test_zero_triangle_graph():
     assert alg.sandia_alg(A) == expected
     assert alg.burkhard_alg(A) == expected
     assert alg.naive_alg(A) == expected
+
 
 def test_graph_k3():
     rows = [0, 0, 1, 1, 2, 2]
@@ -31,15 +33,16 @@ def test_graph_k3():
     assert alg.burkhard_alg(k3) == expected
     assert alg.sandia_alg(k3) == expected
 
+
 def test_preprocess_matrix():
     rows = [0, 0, 1]
     cols = [0, 2, 2]
     vals = [1, 2, 3]
-    A = gb.Matrix.from_coo(rows, cols,vals, nrows=3,ncols=3)
+    A = gb.Matrix.from_coo(rows, cols, vals, nrows=3, ncols=3)
     A = alg.preprocess_matrix(A)
     expected = 1
-    assert A[0,0].value == None
-    assert A[0,2].value == expected
-    assert A[2,0].value == expected
-    assert A[1,2].value == expected
-    assert A[2,1].value == expected
+    assert A[0, 0].value is None
+    assert A[0, 2].value == expected
+    assert A[2, 0].value == expected
+    assert A[1, 2].value == expected
+    assert A[2, 1].value == expected

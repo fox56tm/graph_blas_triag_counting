@@ -54,5 +54,6 @@ int main(){
     testEmptyMatrixFile();
     testPreprocessMatrix();
     printf("\nTests finished\n");
+    LAGraph_Finalize(msg);
     return 0;
 }

@@ -25,7 +25,7 @@ jobs:
           sudo cmake --install build
       - name: Check format
         run: |
-          find lagraph_bench -type f -name '*.[ch]' -print | xargs clang-format --style=file --dry-run -Werror
+          find lagraph_bench tests -type f -name '*.[ch]' -print | xargs clang-format --style=file --dry-run -Werror
       - name: Configure
         run: |
           cmake . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
@@ -35,3 +35,6 @@ jobs:
       - name: Lint
         run: |
           run-clang-tidy-18 -p=build
+      - name: Tests
+        run: |
+          ctest --test-dir build --output-on-failure
