@@ -164,37 +164,36 @@ python-graphblas performance is comparable to LAGraph. On most graphs Burkhardt 
 more boxplots(`plots/boxplots/`)
 ### Result analysis
 
-The results show the mean values and the 95% confidence intervals.
+The results show the mean values, the 95% confidence intervals. Also  the table includes the sample standard deviation alongside its relative percentage to the mean.
 
 Outliers were observed in some measurements and normality tests did not pass. However, outliers do not affect the conclusion: they appear in both python-graphblas and LAGraph implementations and are therefore The relative position of boxplots and confidence intervals between python-graphblas and LAGraph remains stable regardless of outliers.
 
-| Graph | Configuration | Mean | Confidence Interval 95% |
-| :--- | :--- | :---: | :---: |
-| **web-NotreDame** | burkhard-py | 0.1257 | 0.1257 ± 0.0007 |
-| | sandia-py | 0.03050 | 0.03050 ± 0.0005 |
-| | burkhard-lagr | 0.1244 | 0.1244 ± 0.0007 |
-| | sandia-lagr | 0.0331 | 0.0331 ± 0.0004 |
-| **web-Stanford** | burkhard-py | 1.1784 | 1.1784 ± 0.0005 |
-| | sandia-py | 0.2643 | 0.2643 ± 0.0004 |
-| | burkhard-lagr | 1.1804 | 1.1804 ± 0.0038 |
-| | sandia-lagr | 0.2607 | 0.2607 ± 0.0004 |
-| **roadNet-CA** | burkhard-py | 0.05783 | 0.05783 ± 0.00014 |
-| | sandia-py | 0.0464 | 0.0464 ± 0.0002 |
-| | burkhard-lagr | 0.0564 | 0.0564 ± 0.0002 |
-| | sandia-lagr | 0.0543 | 0.0543 ± 0.0002 |
-| **cit-Patents** | burkhard-py | 4.322 | 4.322 ± 0.012 |
-| | sandia-py | 0.6794 | 0.6794 ± 0.0009 |
-| | burkhard-lagr | 4.309 | 4.309 ± 0.005 |
-| | sandia-lagr | 0.6982 | 0.6982 ± 0.0012 |
-| **amazon-2008** | burkhard-py | 0.2935 | 0.2935 ± 0.0004 |
-| | sandia-py | 0.10256 | 0.10256 ± 0.00013 |
-| | burkhard-lagr | 0.3023 | 0.3023 ± 0.0003 |
-| | sandia-lagr | 0.1111 | 0.1111 ± 0.0004 |
-| **amazon0302** | burkhard-py | 0.08680 | 0.08680 ± 0.00011 |
-| | sandia-py | 0.02726 | 0.02726 ± 0.00010 |
-| | burkhard-lagr | 0.0835 | 0.0835 ± 0.0004 |
-| | sandia-lagr | 0.02451 | 0.02451 ± 0.00013 |
-
+| Graph | Configuration | Mean | Std Dev (%) | SEM | Confidence Interval 95% |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **web-NotreDame** | burkhard-py | 0.1257 | 0.001985 (1.57%) | 0.000362 | 0.1257 ± 0.0007 |
+| | sandia-py | 0.03050 | 0.001463 (4.85%) | 0.000267 | 0.03050 ± 0.0005 |
+| | burkhard-lagr | 0.1244 | 0.002701 (2.16%) | 0.000493 | 0.1244 ± 0.0007 |
+| | sandia-lagr | 0.0331 | 0.000884 (2.64%) | 0.000161 | 0.0331 ± 0.0004 |
+| **web-Stanford** | burkhard-py | 1.1784 | 0.006097 (0.52%) | 0.001113 | 1.1784 ± 0.0005 |
+| | sandia-py | 0.2643 | 0.001346 (0.51%) | 0.000246 | 0.2643 ± 0.0004 |
+| | burkhard-lagr | 1.1804 | 0.010226 (0.87%) | 0.001867 | 1.1804 ± 0.0038 |
+| | sandia-lagr | 0.2607 | 0.002615 (1.00%) | 0.000477 | 0.2607 ± 0.0004 |
+| **roadNet-CA** | burkhard-py | 0.05783 | 0.000330 (0.57%) | 0.000060 | 0.05783 ± 0.00014 |
+| | sandia-py | 0.0464 | 0.000592 (1.30%) | 0.000108 | 0.0464 ± 0.0002 |
+| | burkhard-lagr | 0.0564 | 0.000552 (0.99%) | 0.000101 | 0.0564 ± 0.0002 |
+| | sandia-lagr | 0.0543 | 0.000720 (1.32%) | 0.000131 | 0.0543 ± 0.0002 |
+| **cit-Patents** | burkhard-py | 4.322 | 0.040947 (0.95%) | 0.007476 | 4.322 ± 0.012 |
+| | sandia-py | 0.6794 | 0.002068 (0.30%) | 0.000378 | 0.6794 ± 0.0009 |
+| | burkhard-lagr | 4.309 | 0.012695 (0.29%) | 0.002318 | 4.309 ± 0.005 |
+| | sandia-lagr | 0.6982 | 0.002949 (0.42%) | 0.000538 | 0.6982 ± 0.0012 |
+| **amazon-2008** | burkhard-py | 0.2935 | 0.001290 (0.44%) | 0.000235 | 0.2935 ± 0.0004 |
+| | sandia-py | 0.10256 | 0.000299 (0.29%) | 0.00055 | 0.10256 ± 0.00013 |
+| | burkhard-lagr | 0.3023 | 0.000890 (0.29%) | 0.000162 | 0.3023 ± 0.0003 |
+| | sandia-lagr | 0.1111 | 0.000957 (0.86%) | 0.000175 | 0.1111 ± 0.0004 |
+| **amazon0302** | burkhard-py | 0.08680 | 0.000328 (0.38%) | 0.000060 | 0.08680 ± 0.00011 |
+| | sandia-py | 0.02726 | 0.000238 (0.87%) | 0.000043 | 0.02726 ± 0.00010 |
+| | burkhard-lagr | 0.0835 | 0.000544 (0.65%) | 0.000099 | 0.0835 ± 0.0004 |
+| | sandia-lagr | 0.02451 | 0.000876 (3.57%) | 0.000160 | 0.02451 ± 0.00013 |
 ### Profiling
 
 To investigate why Python outperforms LAGraph on certain graphs, flame graphs were built using `perf`.
