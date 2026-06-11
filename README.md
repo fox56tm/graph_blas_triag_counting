@@ -117,12 +117,9 @@ Graphs were selected to cover different topologies.
 
 e.g. check `scripts/fix_freq.sh`
 
-Check `scripts/py_bench.sh` and `scripts/lagr_bench.sh`.
+Check `scripts/py_bench.sh` and `scripts/lagr_bench.sh` (These scripts runs benchmarks for python-graphblas and LAGraph).
 
 Ensure that the number of P-cores for your test machine is specified in these scripts.
-
-These scripts:
-- Run benchmarks for python-graphblas and LAGraph
 
 ### 3. Run benchmarks
 
