@@ -1,59 +1,57 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2026 Dmitry Sergeev
-import matplotlib.pyplot as plt
-from scipy import stats
+import scipy.stats as stats
 import numpy as np
 
-graph = "amazon0302"
+graphs = [
+    "amazon0302",
+    "amazon-2008",
+    "cit-Patents",
+    "roadNet-CA",
+    "web-NotreDame",
+    "web-Stanford",
+]
 algorithms = ["burkhard", "sandia"]
-algorithms2 = ["burkhard-py", "sandia-py", "burkhard-lagr", "sandia-lagr"]
-data_py = []
-data_lagr = []
 
-for algo in algorithms:
-    with open(f"../results/bench-{graph}-{algo}.csv", "r") as f:
-        values = [float(line.strip()) for line in f if line.strip()]
-        data_py.append(values)
-for algo in algorithms:
-    with open(f"../results/lagr-{graph}-{algo}.csv", "r") as f:
-        values = [float(line.strip()) for line in f if line.strip()]
-        data_lagr.append(values)
+for graph in graphs:
+    data_py = []
+    data_lagr = []
+    for algo in algorithms:
+        with open(f"../results/bench-{graph}-{algo}.csv", "r") as f:
+            values = [float(line.strip()) for line in f if line.strip()]
+            data_py.append(values)
+    for algo in algorithms:
+        with open(f"../results/lagr-{graph}-{algo}.csv", "r") as f:
+            values = [float(line.strip()) for line in f if line.strip()]
+            data_lagr.append(values)
 
-for i in range(0, 2):
-    print(f"{algorithms[i]} normal test:", (stats.normaltest(data_py[i])))
+    print(f"graph: {graph}\n")
+    for i in range(0, 2):
+        print(f"{algorithms[i]}-py normal test:  ", (stats.normaltest(data_py[i])))
+    for i in range(0, 2):
+        print(f"{algorithms[i]}-lagr normal test:", (stats.normaltest(data_lagr[i])))
 
-for i in range(0, 2):
-    print(f"{algorithms[i]} normal test:", (stats.normaltest(data_lagr[i])))
+    print("\n---Stats---")
+    all_labels = ["burkhard-py", "sandia-py", "burkhard-lagr", "sandia-lagr"]
+    all_datasets = [
+        sorted(data_py[0]),
+        sorted(data_py[1]),
+        sorted(data_lagr[0]),
+        sorted(data_lagr[1]),
+    ]
+    for label, d in zip(all_labels, all_datasets):
+        mean = np.mean(d)
+        sem = stats.sem(d)
+        ci = stats.t.ppf(0.975, df=len(d) - 1) * sem
+        std_dev = np.std(d, ddof=1)
+        relative_std = (std_dev / mean) * 100
 
-print("\n--- SEM ---")
-all_labels = ["burkhard-py", "sandia-py", "burkhard-lagr", "sandia-lagr"]
-all_datasets = [
-    sorted(data_py[0]),
-    sorted(data_py[1]),
-    sorted(data_lagr[0]),
-    sorted(data_lagr[1]),
-]
-for label, d in zip(all_labels, all_datasets):
-    mean = np.mean(d)
-    sem = stats.sem(d)
-    ci = stats.t.ppf(0.975, df=len(d) - 1) * sem
-    print(f"{label}: mean={mean:.6f}, sem={sem:.6f}, interval={mean:.6f} ± {ci:.6f}")
-
-all_data = [
-    sorted(data_py[0]),
-    sorted(data_py[1]),
-    sorted(data_lagr[0]),
-    sorted(data_lagr[1]),
-]
-bp = plt.boxplot(all_data, patch_artist=True)
-colors = ["b", "g", "r", "y"]
-for patch, color in zip(bp["boxes"], colors):
-    patch.set_facecolor(color)
-plt.xticks([1, 2, 3, 4], algorithms2)
-plt.ylabel("seconds")
-plt.title(graph)
-plt.show()
-
+        print(f"{label}:")
+        print(f"  mean     = {mean:.6f}")
+        print(f"  std dev  = {std_dev:.6f} ({relative_std:.2f}%)")
+        print(f"  sem      = {sem:.6f}")
+        print(f"  interval = {mean:.6f} ± {ci:.6f}")
+        print("-" * 30)
 
 # ======below code for 2 boxplots=======
 # all_data_2 = [
