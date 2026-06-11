@@ -219,9 +219,9 @@ GB_select_positional_phase1._omp_fn.1:  ~14.96% on LAGraph / ~7.07% on python-gr
 
 GB_msort_3._omp_fn.0:  ~6.59% on LAGraph / ~3.29% on python-graphblas
 
-LAGraph:
+LAGraph(sandia):
 ![flame1](plots/flame_graphs/roadNet-CA_sandia_flame_c.svg)
-python-graphblas:
+python-graphblas(sandia):
 ![flame1](plots/flame_graphs/roadNet-CA_sandia_flame_py.svg)
 
 #### 2.amazon-2008(sandia)
@@ -234,9 +234,9 @@ GB_msort_3._omp_fn.0:  ~3.5% on LAGraph / ~2.57% on python-graphblas
 
 Although these specific functions differ by only ~1%, the functions called by them also take slightly more time, compounding the overall runtime difference
 
-LAGraph:
+LAGraph(sandia):
 ![flame1](plots/flame_graphs/amazon-2008_sandia_flame_c.svg)
-python-graphblas:
+python-graphblas(sandia):
 ![flame1](plots/flame_graphs/amazon-2008_sandia_flame_py.svg)
 
 #### 3.web-NotreDame(sandia)
@@ -245,10 +245,10 @@ GB_AxB_saxpy3_flopcount._omp_fn.0:  ~4.83% on LAGraph / ~2.74% on python-graphbl
 
 GB_msort_3._omp_fn.0:  ~5.22% on LAGraph / ~2.74% on python-graphblas
 
-LAGraph:
-![flame1](plots/flame_graphs/web-Notre_Dame_sandia_flame_c.svg)
-python-graphblas:
-![flame1](plots/flame_graphs/web-Notre_Dame_sandia_flame_py.svg)
+LAGraph(sandia):
+![flame1](plots/flame_graphs/web-NotreDame_sandia_flame_c.svg)
+python-graphblas(sandia):
+![flame1](plots/flame_graphs/web-NotreDame_sandia_flame_py.svg)
  
 ## Outlier Elimination Attempts
 
