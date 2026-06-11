@@ -11,8 +11,8 @@ jobs:
       - uses: actions/checkout@v5
       - name: GrB install
         run: |
-          git clone --depth 1 https://github.com/DrTimothyAldenDavis/GraphBLAS.git
-          cd GraphBLAS
+          git clone --depth 1 --branch v9.4.branch https://github.com/DrTimothyAldenDavis/GraphBLAS.git
+          cd GraphBLAS9
           cmake -B build -DCMAKE_BUILD_TYPE=Release -DGB_TESTS=OFF
           cmake --build build --parallel $(nproc)
           sudo cmake --install build
