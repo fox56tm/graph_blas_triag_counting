@@ -166,7 +166,7 @@ more boxplots(`plots/boxplots/`)
 
 The results show the mean values, the 95% confidence intervals. Also  the table includes the sample standard deviation alongside its relative percentage to the mean.
 
-Outliers were observed in some measurements and normality tests did not pass. However, outliers do not affect the conclusion: they appear in both python-graphblas and LAGraph implementations and are therefore The relative position of boxplots and confidence intervals between python-graphblas and LAGraph remains stable regardless of outliers.
+Outliers were observed in some measurements and normality tests did not pass. However, outliers do not affect the conclusion: they appear in both python-graphblas and LAGraph implementations. The relative position of boxplots and confidence intervals between python-graphblas and LAGraph remains stable regardless of outliers.
 
 | Graph | Configuration | Mean | Std Dev (%) | SEM | Confidence Interval 95% |
 | :--- | :--- | :---: | :---: | :---: | :---: |
