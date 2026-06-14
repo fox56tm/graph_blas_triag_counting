@@ -12,6 +12,7 @@ for file in data/*.mtx; do
     for algo in burkhard sandia; do
         echo "now: $graph $algo"
         OUT_FILE="results/lagr-${graph}-${algo}.csv"
+        #drop caches
         sync
         echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
         taskset -c 0-7 "$BIN" "$file" "$algo" "$OUT_FILE"

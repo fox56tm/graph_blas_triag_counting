@@ -9,6 +9,7 @@ for file in data/*.mtx; do
     graph=$(basename "$file" .mtx)
     for algo in burkhard sandia; do
         echo "now: $graph $algo"
+        #drop caches
         sync
         echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
         (cd src && LD_PRELOAD=/usr/local/lib/libgraphblas.so.9.4.5 \
