@@ -11,7 +11,7 @@ jobs:
       - name: clone code
         uses: actions/checkout@v6
       - name: install uv
-        uses: astral-sh/setup-uv@v8
+        uses: astral-sh/setup-uv@v7
       - name: install dependicies
         run: uv sync
       - name: format and lint
