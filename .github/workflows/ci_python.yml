@@ -22,3 +22,5 @@ jobs:
         run: uv run pytest
       - name: Check scripts
         uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: './scripts'
