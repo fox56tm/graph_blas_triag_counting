@@ -20,5 +20,5 @@ jobs:
             uv run ruff format . --check
       - name: test run
         run: uv run pytest
-      - name: shellcheck
+      - name: Check scripts
         uses: ludeeus/action-shellcheck@master

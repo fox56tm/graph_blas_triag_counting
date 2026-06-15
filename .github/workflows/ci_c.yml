@@ -38,3 +38,5 @@ jobs:
       - name: Tests
         run: |
           ctest --test-dir build --output-on-failure
+      - name: Check scripts
+        uses: ludeeus/action-shellcheck@master

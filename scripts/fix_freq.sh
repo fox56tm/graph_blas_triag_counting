@@ -23,5 +23,5 @@ echo "85 90" | sudo tee /sys/devices/platform/huawei-wmi/charge_control_threshol
 
 # Move interrupts to E-cores
 for i in /proc/irq/*/smp_affinity; do
-    echo f00 | sudo tee $i > /dev/null 2>&1
+    echo f00 | sudo tee "$i" > /dev/null 2>&1
 done
