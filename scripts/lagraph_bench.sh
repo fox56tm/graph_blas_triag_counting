@@ -1,0 +1,21 @@
+#!/bin/bash
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Dmitry Sergeev
+
+sudo -v
+sudo ./scripts/fix_freq.sh
+mkdir -p results
+BIN="./build/main"
+
+for file in data/*.mtx; do
+    graph=$(basename "$file" .mtx)
+    for algo in burkhard sandia; do
+        echo "now: $graph $algo"
+        OUT_FILE="results/lagr-${graph}-${algo}.csv"
+        #drop caches
+        sync
+        echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+        taskset -c 0-7 "$BIN" "$file" "$algo" "$OUT_FILE"
+        echo "ready: $graph $algo"
+    done
+done
