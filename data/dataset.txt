@@ -1,3 +1,3 @@
 
-f you want to run the benchmark yourself, 
+if you want to run the benchmark yourself, 
 follow the instructions in the README.md
